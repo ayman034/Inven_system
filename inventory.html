@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory System - Inventory</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="image/eGAZ logo.jpeg" alt="eGAZ Logo">
+            <span>Inventory System</span>
+        </div>
+
+        <nav id="sidebarMenu"></nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Inventory Management</h2>
+            </div>
+
+            <div id="userInfo" class="user-info"></div>
+
+        </header>
+
+
+        <section class="page-content">
+
+
+            <!-- Allocate Stock -->
+            <div
+                class="content-card"
+                id="inventoryFormContainer"
+            >
+
+                <div class="card-header">
+                    <h3>Allocate Item to Room</h3>
+                </div>
+
+
+                <form id="inventoryForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="inventoryItem">
+                                Item
+                            </label>
+
+                            <select
+                                id="inventoryItem"
+                                required
+                            >
+                                <option value="">
+                                    Select Item
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="inventoryRoom">
+                                Room
+                            </label>
+
+                            <select
+                                id="inventoryRoom"
+                                required
+                            >
+                                <option value="">
+                                    Select Room
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="sendQuantity">
+                                Quantity
+                            </label>
+
+                            <input
+                                type="number"
+                                id="sendQuantity"
+                                min="1"
+                                placeholder="Quantity"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Allocate Stock
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Stock Summary -->
+            <div class="content-card">
+
+                <div class="card-header">
+                    <h3>Stock Summary</h3>
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Item</th>
+                                <th>Total Quantity</th>
+                                <th>Allocated</th>
+                                <th>Remaining</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="inventorySummaryBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- Room Allocation -->
+            <div class="content-card">
+
+                <div class="card-header">
+                    <h3>Room Allocation</h3>
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Item</th>
+                                <th>Room</th>
+                                <th>Quantity in Room</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="inventoryTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="JS/api.js"></script>
+<script src="JS/auth.js"></script>
+<script src="JS/nav.js"></script>
+
+<script>
+    protectSection("inventory");
+</script>
+
+<script src="JS/inventory.js"></script>
+
+</body>
+</html>
