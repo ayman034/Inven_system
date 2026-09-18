@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory System - Rooms</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <img src="image/eGAZ logo.jpeg" alt="eGAZ Logo">
+            <span>Inventory System</span>
+        </div>
+
+        <nav id="sidebarMenu"></nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>Rooms</h2>
+            </div>
+
+            <div id="userInfo" class="user-info"></div>
+
+        </header>
+
+
+        <section class="page-content">
+
+            <!-- Add Room -->
+            <div class="content-card" id="roomFormContainer">
+
+                <div class="card-header">
+                    <h3>Add New Room</h3>
+                </div>
+
+                <form id="roomForm">
+
+                    <div class="form-group">
+
+                        <label for="roomName">
+                            Room Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="roomName"
+                            placeholder="Enter room name"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Add Room
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Rooms -->
+            <div class="content-card">
+
+                <div class="card-header">
+                    <h3>Registered Rooms</h3>
+                </div>
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchRoom"
+                        placeholder="Search room..."
+                    >
+
+                </div>
+
+
+                <div class="table-responsive">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Room Name</th>
+                                <th>Items Allocated</th>
+                                <th>Action</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="roomTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- Room Contents -->
+            <div class="content-card room-contents-card">
+                <div class="card-header">
+                    <h3>Room Contents</h3>
+                </div>
+                <div id="roomContents" class="room-contents"></div>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="JS/api.js"></script>
+<script src="JS/auth.js"></script>
+<script src="JS/nav.js"></script>
+
+<script>
+    protectSection("rooms");
+</script>
+
+<script src="JS/rooms.js"></script>
+
+</body>
+</html>
