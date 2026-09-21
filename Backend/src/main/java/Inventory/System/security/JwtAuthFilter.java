@@ -52,7 +52,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
             } catch (UsernameNotFoundException | IllegalArgumentException ex) {
-                // Token ya user aliyefutwa au iliyoharibika isiangushe request kwa 500.
+                // Ignore invalid or revoked user tokens instead of returning a 500 error.
                 SecurityContextHolder.clearContext();
             }
         }

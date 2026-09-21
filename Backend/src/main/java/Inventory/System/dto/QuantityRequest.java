@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class QuantityRequest {
-    @NotNull(message = "Quantity inahitajika")
-    @Min(value = 1, message = "Quantity lazima iwe zaidi ya 0")
+    @NotNull(message = "Quantity is required")
+    @Min(value = 1, message = "Quantity must be greater than 0")
     private Integer quantity;
 }

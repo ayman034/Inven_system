@@ -10,9 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
- * Inaunda akaunti ya kwanza ya ADMIN mara mfumo unapoanza kwa mara ya kwanza
- * (kama hakuna users kabisa kwenye database).
- * Hii inafanya iwezekane kuingia mfumo mara ya kwanza na kuanza kuunda users wengine.
+ * Creates the first ADMIN account when the system starts for the first time
+ * (when the database contains no users).
+ * This allows the first login so additional users can be created.
  */
 @Component
 @RequiredArgsConstructor
@@ -44,10 +44,10 @@ public class DataInitializer implements CommandLineRunner {
             userRepository.save(admin);
 
             System.out.println("============================================");
-            System.out.println("Akaunti ya kwanza ya ADMIN imeundwa:");
+            System.out.println("The first ADMIN account has been created:");
             System.out.println("Username: " + defaultAdminUsername);
             System.out.println("Password haijaonyeshwa kwa usalama.");
-            System.out.println("Tafadhali badilisha password ya admin mara moja!");
+            System.out.println("Please change the admin password immediately!");
             System.out.println("============================================");
         }
     }

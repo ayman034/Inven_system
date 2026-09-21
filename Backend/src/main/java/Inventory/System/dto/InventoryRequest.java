@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class InventoryRequest {
 
-    @NotNull(message = "Item inahitajika")
+    @NotNull(message = "Item is required")
     private Long itemId;
 
-    @NotNull(message = "Room inahitajika")
+    @NotNull(message = "Room is required")
     private Long roomId;
 
-    @NotNull(message = "Quantity inahitajika")
-    @Min(value = 1, message = "Quantity lazima iwe zaidi ya 0")
+    @NotNull(message = "Quantity is required")
+    @Min(value = 1, message = "Quantity must be greater than 0")
     private Integer quantity;
 }

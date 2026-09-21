@@ -13,7 +13,7 @@ public class ItemResponse {
     private Long id;
     private String name;
     private String category;
-    private Integer quantity;   // jumla iliyosajiliwa
-    private Integer allocated;  // iliyotengwa kwenye rooms zote
+    private Integer quantity;   // Total registered quantity
+    private Integer allocated;  // Quantity allocated across all rooms
     private Integer remaining;  // iliyobaki (quantity - allocated)
 }

@@ -8,10 +8,10 @@ import lombok.Data;
 @Data
 public class UserUpdateRequest {
 
-    @NotBlank(message = "Jina kamili linahitajika")
+    @NotBlank(message = "Full name is required")
     private String fullName;
 
-    @NotNull(message = "Role inahitajika")
+    @NotNull(message = "Role is required")
     private Role role;
 
     // Hiari - ikijazwa, password itabadilishwa

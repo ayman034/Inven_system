@@ -8,13 +8,13 @@ import lombok.Data;
 @Data
 public class ItemRequest {
 
-    @NotBlank(message = "Jina la item linahitajika")
+    @NotBlank(message = "Item name is required")
     private String name;
 
-    @NotBlank(message = "Category inahitajika")
+    @NotBlank(message = "Category is required")
     private String category;
 
-    @NotNull(message = "Quantity inahitajika")
-    @Min(value = 0, message = "Quantity haiwezi kuwa hasi")
+    @NotNull(message = "Quantity is required")
+    @Min(value = 0, message = "Quantity cannot be negative")
     private Integer quantity;
 }
