@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,63 +12,200 @@
 
 <body class="login-page">
 
-    <div class="login-wrapper">
+    <!-- Full Page Watermark Background -->
+    <div class="login-background"></div>
 
-        <div class="login-card">
+    <!-- Center Login Container -->
+    <main class="login-container">
 
-            <div class="login-logo">
-                <img src="image/eGAZ logo.jpeg" alt="eGAZ Logo">
-            </div>
+        <!-- LEFT SIDE -->
+        <section class="login-intro">
 
-            <div class="login-header">
-                <h1>Inventory System</h1>
-                <p>Inventory Management System</p>
-            </div>
+            <div class="intro-content">
 
-            <form id="loginForm">
-
-                <div class="form-group">
-                    <label for="username">Username</label>
-
-                    <input
-                        type="text"
-                        id="username"
-                        placeholder="Enter username"
-                        autocomplete="username"
-                        required
-                    >
+                <div class="intro-logo">
+                    <img src="image/eGAZ logo.jpeg" alt="Inventory System Logo">
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
+                <h1>
+                    Welcome to
+                    <span>Inventory System</span>
+                </h1>
 
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter password"
-                        autocomplete="current-password"
-                        required
-                    >
+                <p class="intro-description">
+                    Manage your inventory, items, rooms and stock
+                    information in one simple and organized system.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+
+                        <div>
+                            <h3>Items Management</h3>
+                            <p>Register and manage inventory items.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+
+                        <div>
+                            <h3>Rooms Management</h3>
+                            <p>Manage rooms and allocated items.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+
+                        <div>
+                            <h3>Inventory Tracking</h3>
+                            <p>Track quantities and stock allocation.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+
+                        <div>
+                            <h3>Reports</h3>
+                            <p>View organized inventory reports.</p>
+                        </div>
+                    </div>
+
                 </div>
 
-                <button type="submit" class="login-btn">
-                    Login
-                </button>
-
-            </form>
-
-            <p id="message" class="login-message"></p>
-
-            <div class="login-footer">
-                <small>Inventory Management System</small>
             </div>
 
-        </div>
+        </section>
 
-    </div>
 
+        <!-- RIGHT SIDE -->
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <div class="login-logo">
+                    <img src="image/eGAZ logo.jpeg"
+                         alt="Inventory System Logo">
+                </div>
+
+                <div class="login-header">
+
+                    <h1>Inventory System</h1>
+
+                    <p>
+                        Sign in to your account
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+                <form id="loginForm">
+
+                    <!-- USERNAME -->
+                    <div class="form-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Enter username"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="togglePassword"
+                                aria-label="Show password"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+                    <button
+                        type="submit"
+                        class="login-btn"
+                    >
+                        <span>Login</span>
+                        <span class="login-arrow">→</span>
+                    </button>
+
+                </form>
+
+
+                <!-- LOGIN MESSAGE -->
+                <p
+                    id="message"
+                    class="login-message"
+                ></p>
+
+
+                <!-- FOOTER -->
+                <div class="login-footer">
+
+                    <small>
+                        Inventory Management System
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
     <script src="JS/api.js"></script>
     <script src="JS/script.js"></script>
 
 </body>
+
 </html>
