@@ -30,17 +30,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<Map<String, Object>> handleBadCredentials(BadCredentialsException ex) {
-        return buildResponse(HttpStatus.UNAUTHORIZED, "Username au password si sahihi");
+            return buildResponse(HttpStatus.UNAUTHORIZED, "Invalid username or password");
     }
 
     @ExceptionHandler(DisabledException.class)
     public ResponseEntity<Map<String, Object>> handleDisabled(DisabledException ex) {
-        return buildResponse(HttpStatus.FORBIDDEN, "Akaunti hii imezuiwa (disabled). Wasiliana na Admin.");
+        return buildResponse(HttpStatus.FORBIDDEN, "This account is disabled. Contact an administrator.");
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<Map<String, Object>> handleAccessDenied(AccessDeniedException ex) {
-        return buildResponse(HttpStatus.FORBIDDEN, "Huna ruhusa ya kufanya kitendo hiki.");
+        return buildResponse(HttpStatus.FORBIDDEN, "You are not authorized to perform this action.");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -60,12 +60,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<Map<String, Object>> handleMethodNotSupported(HttpRequestMethodNotSupportedException ex) {
-        return buildResponse(HttpStatus.METHOD_NOT_ALLOWED, "Method hii hairuhusiwi kwenye endpoint hii");
+        return buildResponse(HttpStatus.METHOD_NOT_ALLOWED, "This method is not allowed for this endpoint");
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneralException(Exception ex) {
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Hitilafu imetokea: " + ex.getMessage());
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred: " + ex.getMessage());
     }
 
     private ResponseEntity<Map<String, Object>> buildResponse(HttpStatus status, String message) {

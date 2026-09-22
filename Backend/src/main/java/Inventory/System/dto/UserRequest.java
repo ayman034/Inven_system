@@ -9,16 +9,16 @@ import lombok.Data;
 @Data
 public class UserRequest {
 
-    @NotBlank(message = "Jina kamili linahitajika")
+    @NotBlank(message = "Full name is required")
     private String fullName;
 
-    @NotBlank(message = "Username inahitajika")
+    @NotBlank(message = "Username is required")
     private String username;
 
-    @NotBlank(message = "Password inahitajika")
-    @Size(min = 8, message = "Password lazima iwe na herufi angalau 8")
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
 
-    @NotNull(message = "Role inahitajika")
+    @NotNull(message = "Role is required")
     private Role role;
 }

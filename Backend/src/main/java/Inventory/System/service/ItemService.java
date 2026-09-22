@@ -27,7 +27,7 @@ public class ItemService {
 
     public ItemResponse createItem(ItemRequest request) {
         if (itemRepository.existsByNameIgnoreCase(request.getName().trim())) {
-            throw new BadRequestException("Item hii tayari ipo");
+            throw new BadRequestException("This item already exists");
         }
         Item item = Item.builder().name(request.getName().trim()).category(request.getCategory().trim()).quantity(request.getQuantity()).build();
         return toResponse(itemRepository.save(item));
@@ -37,10 +37,10 @@ public class ItemService {
         Item item = findItem(id);
         int allocated = allocatedFor(id);
         if (request.getQuantity() < allocated) {
-            throw new BadRequestException("Quantity haiwezi kuwa chini ya kiasi kilichotengwa tayari (" + allocated + ")");
+            throw new BadRequestException("Quantity cannot be less than the quantity already allocated (" + allocated + ")");
         }
         if (itemRepository.existsByNameIgnoreCaseAndIdNot(request.getName().trim(), id)) {
-            throw new BadRequestException("Item nyingine yenye jina hili tayari ipo");
+            throw new BadRequestException("Another item with this name already exists");
         }
         item.setName(request.getName().trim());
         item.setCategory(request.getCategory().trim());
@@ -51,7 +51,7 @@ public class ItemService {
     public void deleteItem(Long id) {
         Item item = findItem(id);
         if (allocatedFor(id) > 0) {
-            throw new BadRequestException("Item hii haiwezi kufutwa kwa sababu ina stock iliyotengwa kwenye room");
+            throw new BadRequestException("This item cannot be deleted because it has stock allocated to a room");
         }
         itemRepository.delete(item);
     }

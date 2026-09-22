@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class RoomResponse {
     private Long id;
     private String name;
-    private Integer allocated; // jumla ya vitu vilivyotengwa kwenye room hii
+    private Integer allocated; // Total quantity allocated to this room
 }

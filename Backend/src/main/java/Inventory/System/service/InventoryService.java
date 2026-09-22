@@ -44,7 +44,7 @@ public class InventoryService {
         int remaining = remainingFor(item, inventory == null ? null : inventory.getId());
 
         if (request.getQuantity() > remaining) {
-            throw new BadRequestException("Kiasi kilichobaki cha item hii ni " + remaining + " tu");
+            throw new BadRequestException("The remaining quantity for this item is only " + remaining);
         }
 
         if (inventory == null) {
@@ -63,13 +63,13 @@ public class InventoryService {
 
         inventoryRepository.findByItemAndRoom(item, room).ifPresent(existing -> {
             if (!existing.getId().equals(id)) {
-                throw new BadRequestException("Item hii tayari ipo kwenye room hii");
+                throw new BadRequestException("This item already exists in this room");
             }
         });
 
         int remaining = remainingFor(item, id);
         if (request.getQuantity() > remaining) {
-            throw new BadRequestException("Kiasi cha juu kinachoruhusiwa ni " + remaining);
+            throw new BadRequestException("The maximum allowed quantity is " + remaining);
         }
 
         inventory.setItem(item);
@@ -84,7 +84,7 @@ public class InventoryService {
         int remaining = remainingFor(item, id);
 
         if (request.getQuantity() > remaining) {
-            throw new BadRequestException("Kiasi kilichobaki cha item hii ni " + remaining + " tu");
+            throw new BadRequestException("The remaining quantity for this item is only " + remaining);
         }
 
         inventory.setQuantity(inventory.getQuantity() + request.getQuantity());
@@ -94,10 +94,10 @@ public class InventoryService {
     public void removeQuantity(Long id, Integer quantity) {
         Inventory inventory = findInventory(id);
         if (quantity == null || quantity <= 0) {
-            throw new BadRequestException("Quantity lazima iwe zaidi ya 0");
+            throw new BadRequestException("Quantity must be greater than 0");
         }
         if (quantity > inventory.getQuantity()) {
-            throw new BadRequestException("Huwezi kuondoa zaidi ya " + inventory.getQuantity());
+            throw new BadRequestException("You cannot remove more than " + inventory.getQuantity());
         }
 
         int newQuantity = inventory.getQuantity() - quantity;

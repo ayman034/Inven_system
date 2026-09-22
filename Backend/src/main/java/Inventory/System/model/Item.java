@@ -20,15 +20,15 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Jina la item linahitajika")
+    @NotBlank(message = "Item name is required")
     @Column(nullable = false, unique = true)
     private String name;
 
-    @NotBlank(message = "Category inahitajika")
+    @NotBlank(message = "Category is required")
     @Column(nullable = false)
     private String category;
 
-    @Min(value = 0, message = "Quantity haiwezi kuwa hasi")
+    @Min(value = 0, message = "Quantity cannot be negative")
     @Column(nullable = false)
     private Integer quantity;
 }

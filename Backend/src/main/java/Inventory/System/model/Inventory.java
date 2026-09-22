@@ -32,7 +32,7 @@ public class Inventory {
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
-    @Min(value = 0, message = "Quantity haiwezi kuwa hasi")
+        @Min(value = 0, message = "Quantity cannot be negative")
     @Column(nullable = false)
     private Integer quantity;
 }

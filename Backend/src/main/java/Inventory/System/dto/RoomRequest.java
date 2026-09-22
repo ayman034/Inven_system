@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class RoomRequest {
 
-    @NotBlank(message = "Jina la room linahitajika")
+    @NotBlank(message = "Room name is required")
     private String name;
 }

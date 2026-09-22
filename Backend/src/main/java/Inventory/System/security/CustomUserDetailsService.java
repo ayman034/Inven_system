@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String normalizedUsername = username == null ? "" : username.trim();
         User user = userRepository.findByUsernameIgnoreCase(normalizedUsername)
-                .orElseThrow(() -> new UsernameNotFoundException("Mtumiaji hajapatikana: " + normalizedUsername));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + normalizedUsername));
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUsername())

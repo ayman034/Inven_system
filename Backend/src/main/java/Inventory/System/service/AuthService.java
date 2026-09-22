@@ -25,7 +25,7 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request) {
         // Hii itatupa BadCredentialsException au DisabledException moja kwa moja
-        // ambazo zinashughulikiwa na GlobalExceptionHandler
+        // Authentication exceptions are handled by GlobalExceptionHandler.
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );

@@ -28,7 +28,7 @@ public class UserService {
 
     public UserResponse createUser(UserRequest request) {
         if (userRepository.existsByUsernameIgnoreCase(request.getUsername())) {
-            throw new BadRequestException("Username hii tayari inatumika");
+            throw new BadRequestException("This username is already in use");
         }
 
         User user = User.builder()
@@ -44,7 +44,7 @@ public class UserService {
 
     public UserResponse updateUser(Long id, UserUpdateRequest request) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Mtumiaji hajapatikana"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         user.setFullName(request.getFullName());
         user.setRole(request.getRole());
@@ -58,7 +58,7 @@ public class UserService {
 
     public UserResponse toggleUser(Long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Mtumiaji hajapatikana"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         user.setDisabled(!user.isDisabled());
         return UserResponse.fromEntity(userRepository.save(user));

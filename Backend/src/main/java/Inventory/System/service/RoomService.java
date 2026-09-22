@@ -23,21 +23,21 @@ public class RoomService {
 
     public RoomResponse createRoom(RoomRequest request) {
         String name = request.getName().trim();
-        if (roomRepository.existsByNameIgnoreCase(name)) throw new BadRequestException("Room hii tayari ipo");
+        if (roomRepository.existsByNameIgnoreCase(name)) throw new BadRequestException("This room already exists");
         return toResponse(roomRepository.save(Room.builder().name(name).build()));
     }
 
     public RoomResponse updateRoom(Long id, RoomRequest request) {
         Room room = findRoom(id);
         String name = request.getName().trim();
-        if (roomRepository.existsByNameIgnoreCaseAndIdNot(name, id)) throw new BadRequestException("Room nyingine yenye jina hili tayari ipo");
+        if (roomRepository.existsByNameIgnoreCaseAndIdNot(name, id)) throw new BadRequestException("Another room with this name already exists");
         room.setName(name);
         return toResponse(roomRepository.save(room));
     }
 
     public void deleteRoom(Long id) {
         Room room = findRoom(id);
-        if (allocatedFor(id) > 0) throw new BadRequestException("Room hii haiwezi kufutwa kwa sababu ina stock iliyotengwa");
+        if (allocatedFor(id) > 0) throw new BadRequestException("This room cannot be deleted because it has allocated stock");
         roomRepository.delete(room);
     }
 
