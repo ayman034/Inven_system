@@ -7,15 +7,15 @@
 
     <title>Inventory System - Login</title>
 
-    <link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body class="login-page">
 
-    <!-- Full Page Background -->
+    <!-- Full Page Watermark Background -->
     <div class="login-background"></div>
 
-    <!-- Login Container -->
+    <!-- Center Login Container -->
     <main class="login-container">
 
         <!-- LEFT SIDE -->
@@ -41,6 +41,7 @@
 
                     <div class="feature-item">
                         <div class="feature-icon">✓</div>
+
                         <div>
                             <h3>Items Management</h3>
                             <p>Register and manage inventory items.</p>
@@ -49,6 +50,7 @@
 
                     <div class="feature-item">
                         <div class="feature-icon">✓</div>
+
                         <div>
                             <h3>Rooms Management</h3>
                             <p>Manage rooms and allocated items.</p>
@@ -57,6 +59,7 @@
 
                     <div class="feature-item">
                         <div class="feature-icon">✓</div>
+
                         <div>
                             <h3>Inventory Tracking</h3>
                             <p>Track quantities and stock allocation.</p>
@@ -65,6 +68,7 @@
 
                     <div class="feature-item">
                         <div class="feature-icon">✓</div>
+
                         <div>
                             <h3>Reports</h3>
                             <p>View organized inventory reports.</p>
@@ -77,33 +81,43 @@
 
         </section>
 
+
         <!-- RIGHT SIDE -->
         <section class="login-section">
 
             <div class="login-card">
 
                 <div class="login-logo">
-                    <img src="image/eGAZ logo.jpeg" alt="Inventory System Logo">
+                    <img src="image/eGAZ logo.jpeg"
+                         alt="Inventory System Logo">
                 </div>
 
                 <div class="login-header">
+
                     <h1>Inventory System</h1>
-                    <p>Sign in to your account</p>
+
+                    <p>
+                        Sign in to your account
+                    </p>
+
                 </div>
+
 
                 <!-- LOGIN FORM -->
                 <form id="loginForm">
 
                     <!-- USERNAME -->
-                    <div class="login-form-group">
+                    <div class="form-group">
 
                         <label for="username">
                             Username
                         </label>
 
-                        <div class="login-input-wrapper">
+                        <div class="input-wrapper">
 
-                            <span class="login-input-icon">👤</span>
+                            <span class="input-icon">
+                                👤
+                            </span>
 
                             <input
                                 type="text"
@@ -117,16 +131,19 @@
 
                     </div>
 
+
                     <!-- PASSWORD -->
-                    <div class="login-form-group">
+                    <div class="form-group">
 
                         <label for="password">
                             Password
                         </label>
 
-                        <div class="login-input-wrapper">
+                        <div class="input-wrapper">
 
-                            <span class="login-input-icon">🔒</span>
+                            <span class="input-icon">
+                                🔒
+                            </span>
 
                             <input
                                 type="password"
@@ -149,6 +166,7 @@
 
                     </div>
 
+
                     <!-- LOGIN BUTTON -->
                     <button
                         type="submit"
@@ -160,12 +178,21 @@
 
                 </form>
 
-                <!-- MESSAGE -->
-                <p id="message" class="login-message"></p>
+
+                <!-- LOGIN MESSAGE -->
+                <p
+                    id="message"
+                    class="login-message"
+                ></p>
+
 
                 <!-- FOOTER -->
                 <div class="login-footer">
-                    <small>Inventory Management System</small>
+
+                    <small>
+                        Inventory Management System
+                    </small>
+
                 </div>
 
             </div>
@@ -173,6 +200,7 @@
         </section>
 
     </main>
+
 
     <!-- JAVASCRIPT -->
     <script src="JS/api.js"></script>
