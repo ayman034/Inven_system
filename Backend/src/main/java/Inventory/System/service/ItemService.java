@@ -26,9 +26,6 @@ public class ItemService {
     public ItemResponse getItemById(Long id) { return toResponse(findItem(id)); }
 
     public ItemResponse createItem(ItemRequest request) {
-        if (itemRepository.existsByNameIgnoreCase(request.getName().trim())) {
-            throw new BadRequestException("This item already exists");
-        }
         Item item = Item.builder().name(request.getName().trim()).category(request.getCategory().trim()).quantity(request.getQuantity()).build();
         return toResponse(itemRepository.save(item));
     }
@@ -38,9 +35,6 @@ public class ItemService {
         int allocated = allocatedFor(id);
         if (request.getQuantity() < allocated) {
             throw new BadRequestException("Quantity cannot be less than the quantity already allocated (" + allocated + ")");
-        }
-        if (itemRepository.existsByNameIgnoreCaseAndIdNot(request.getName().trim(), id)) {
-            throw new BadRequestException("Another item with this name already exists");
         }
         item.setName(request.getName().trim());
         item.setCategory(request.getCategory().trim());

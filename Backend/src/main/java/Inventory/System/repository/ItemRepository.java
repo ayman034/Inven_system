@@ -15,6 +15,4 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query("select item from Item item where item.id = :id")
     Optional<Item> findByIdForUpdate(@Param("id") Long id);
 
-    boolean existsByNameIgnoreCase(String name);
-    boolean existsByNameIgnoreCaseAndIdNot(String name, Long id);
 }

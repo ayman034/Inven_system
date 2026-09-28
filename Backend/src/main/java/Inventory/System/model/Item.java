@@ -21,7 +21,7 @@ public class Item {
     private Long id;
 
     @NotBlank(message = "Item name is required")
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
     @NotBlank(message = "Category is required")
