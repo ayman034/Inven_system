@@ -1203,8 +1203,10 @@ td strong {
     }
 
     .app-layout {
-        display: block;
-    }
+    display: block;
+    width: 100%;
+    min-width: 0;
+}
 
     .main-content {
         width: 100%;
@@ -1671,9 +1673,20 @@ body:not(.login-page)::before {
 
 @media (max-width: 850px) {
     .sidebar {
-        width: 220px;
-        min-width: 220px;
-
+    width: 250px;
+    min-width: 250px;
+    min-height: 100vh;
+    background: var(--sidebar-bg);
+    border-right: 1px solid rgba(148, 163, 184, 0.2);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 10px 0 30px rgba(15, 23, 42, 0.12);
+}
     .menu-toggle {
         display: inline-flex;
         align-items: center;
@@ -1796,11 +1809,11 @@ body:not(.login-page)::before {
     }
 
     .main-content {
-        width: 100% !important;
-        max-width: 100%;
-        min-width: 0;
-        margin-left: 0 !important;
-    }
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    min-width: 0;
+    max-width: none;
+}
 
     .topbar {
         min-height: 62px;
@@ -2913,4 +2926,98 @@ tbody tr:hover {
 
     .login-page .login-intro { min-height: 190px; padding: 24px; }
     .login-page .login-section { padding: 28px 20px 24px; }
+}
+
+
+@media (min-width: 851px) {
+    .app-layout {
+        display: block;
+        width: 100%;
+        min-width: 0;
+    }
+
+    
+     .main-content {   width: calc(100% - 250px);
+        margin-left: 250px;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .page-content {
+        position: static;
+        left: auto;
+        width: calc(100% - 56px);
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px 0 44px;
+    }
+}
+
+
+
+/* FINAL DESKTOP LAYOUT FIX */
+
+@media (min-width: 851px) {
+
+    .app-layout {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 100vh !important;
+    }
+
+    .sidebar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        width: 250px !important;
+        min-width: 250px !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        z-index: 1000 !important;
+    }
+
+    .main-content {
+        position: relative !important;
+        width: calc(100% - 250px) !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        margin-left: 250px !important;
+        margin-right: 0 !important;
+        min-height: 100vh !important;
+    }
+
+    .page-content {
+        position: static !important;
+        left: auto !important;
+        right: auto !important;
+        width: calc(100% - 56px) !important;
+        max-width: 1320px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 30px 0 44px !important;
+    }
+
+    .welcome-box,
+    .dashboard-cards,
+    .content-card,
+    .quick-actions {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    .dashboard-cards {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 15px !important;
+    }
+
+    .quick-actions {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+    }
 }
