@@ -12,7 +12,7 @@ async function apiRequest(path, options = {}) {
 
     if (response.status === 401) {
         sessionStorage.clear();
-        window.location.href = "index.html";
+        window.location.href = "login.html";
         throw new Error("Session expired. Please login again.");
     }
 

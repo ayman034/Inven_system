@@ -2,7 +2,7 @@ const currentUsername = sessionStorage.getItem("username");
 const currentRole = String(sessionStorage.getItem("role") || "").toUpperCase();
 
 if (!sessionStorage.getItem("token") || !currentUsername || !currentRole) {
-    window.location.href = "index.html";
+    window.location.href = "login.html";
 }
 
 function logout() {

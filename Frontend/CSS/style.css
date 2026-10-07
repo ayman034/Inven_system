@@ -42,6 +42,286 @@ body {
 }
 
 /* =========================================================
+   PUBLIC LANDING PAGE
+   ========================================================= */
+
+.landing-page {
+    --landing-ink: #182b27;
+    --landing-green: #214b3d;
+    --landing-lime: #d8e681;
+    --landing-muted: #64716c;
+    background: #f8f8f2;
+    color: var(--landing-ink);
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.landing-header {
+    height: 72px;
+    padding: 0 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f8f2;
+}
+
+.landing-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--landing-ink);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.landing-brand img {
+    width: 39px;
+    height: 39px;
+    object-fit: contain;
+}
+
+.landing-brand strong {
+    font-weight: 400;
+}
+
+.landing-login-link {
+    color: var(--landing-ink);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.landing-login-link span {
+    margin-left: 8px;
+    color: var(--landing-green);
+}
+
+.landing-hero {
+    min-height: min(650px, calc(100svh - 72px));
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 72px 9%;
+    color: #fff;
+    background: linear-gradient(90deg, rgba(15, 35, 29, 0.9) 0%, rgba(15, 35, 29, 0.7) 48%, rgba(15, 35, 29, 0.18) 100%), url('../image/warehouse.jpg') center 48% / cover no-repeat;
+}
+
+.landing-hero-content {
+    width: min(610px, 100%);
+    animation: landing-rise 650ms ease-out both;
+}
+
+.landing-eyebrow {
+    margin-bottom: 22px;
+    color: var(--landing-lime);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.landing-eyebrow span {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--landing-lime);
+    vertical-align: 1px;
+}
+
+.landing-hero h1,
+.landing-overview h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 5.4vw, 72px);
+    line-height: 1.05;
+    font-weight: 400;
+}
+
+.landing-hero h1 {
+    font-size: 64px;
+}
+
+.landing-hero h1 em {
+    color: var(--landing-lime);
+    font-weight: 400;
+}
+
+.landing-lede {
+    max-width: 450px;
+    margin-top: 22px;
+    color: rgba(255, 255, 255, 0.83);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.landing-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 26px;
+    margin-top: 32px;
+}
+
+.landing-primary-action,
+.landing-secondary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    min-height: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.landing-primary-action {
+    padding: 0 18px;
+    color: var(--landing-ink);
+    background: var(--landing-lime);
+}
+
+.landing-primary-action:hover {
+    background: #e5f19a;
+}
+
+.landing-primary-action span,
+.landing-secondary-action span {
+    font-size: 18px;
+}
+
+.landing-secondary-action {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.landing-caption {
+    position: absolute;
+    right: 7.5%;
+    bottom: 26px;
+    left: 7.5%;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 13px;
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 10px;
+}
+
+.landing-caption span:first-child {
+    color: var(--landing-lime);
+    font-weight: 700;
+}
+
+.landing-overview {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.8fr) 1.5fr;
+    gap: 7%;
+    padding: 72px 9%;
+    background: #fff;
+}
+
+.landing-eyebrow-dark {
+    color: var(--landing-green);
+}
+
+.landing-overview h2 {
+    font-size: clamp(34px, 4vw, 48px);
+}
+
+.landing-features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-content: center;
+    gap: 18px;
+}
+
+.landing-feature {
+    padding-top: 15px;
+    border-top: 1px solid #cbd2c9;
+}
+
+.landing-feature-number {
+    color: #647f42;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.landing-feature h3 {
+    margin: 25px 0 10px;
+    font-size: 16px;
+}
+
+.landing-feature p {
+    color: var(--landing-muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.landing-bottom-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px 9%;
+    background: var(--landing-green);
+    color: #fff;
+}
+
+.landing-bottom-cta p {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 24px;
+}
+
+.landing-bottom-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--landing-lime);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.landing-bottom-cta a span {
+    font-size: 18px;
+}
+
+.landing-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 9%;
+    border-top: 1px solid #e2e7de;
+    color: var(--landing-muted);
+    font-size: 11px;
+}
+
+.login-home-link {
+    display: inline-block;
+    margin-bottom: 28px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+@keyframes landing-rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 760px) {
+    .landing-header { height: 66px; padding: 0 6%; }
+    .landing-hero { min-height: min(650px, calc(100svh - 66px)); padding: 64px 7%; background-position: 58% center; }
+    .landing-hero h1 { font-size: 42px; }
+    .landing-lede { max-width: 390px; font-size: 15px; }
+    .landing-actions { align-items: flex-start; flex-direction: column; gap: 12px; }
+    .landing-caption { right: 7%; left: 7%; }
+    .landing-overview { grid-template-columns: 1fr; gap: 32px; padding: 54px 7%; }
+    .landing-features { grid-template-columns: 1fr; gap: 24px; }
+    .landing-feature h3 { margin-top: 12px; }
+    .landing-bottom-cta { align-items: flex-start; flex-direction: column; padding: 26px 7%; }
+    .landing-footer { padding: 18px 7%; }
+}
+
+/* =========================================================
    LOGIN PAGE
    ========================================================= */
 
@@ -1151,14 +1431,14 @@ body:not(.login-page)::before {
 @media (min-width: 851px) {
     .page-content {
         position: relative;
-        left: -125px;
+        left: 0;
     }
 }
 
 @media (min-width: 651px) and (max-width: 850px) {
     .page-content {
         position: relative;
-        left: -110px;
+        left: 0;
     }
 }
 
@@ -2237,7 +2517,6 @@ tbody tr:hover {
     .topbar {
         padding: 9px 10px;
     }
-}
 
     .topbar h2 {
         font-size: 15px;
