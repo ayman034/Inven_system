@@ -2,6 +2,7 @@ package Inventory.System.controller;
 
 import Inventory.System.dto.ItemRequest;
 import Inventory.System.dto.ItemResponse;
+import Inventory.System.dto.QuantityRequest;
 import Inventory.System.service.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,15 @@ public class ItemController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(itemService.createItem(request));
+    }
+
+    @PostMapping("/{id}/add-stock")
+    @PreAuthorize("hasRole('STOREKEEPER')")
+    public ResponseEntity<ItemResponse> addStock(
+            @PathVariable Long id,
+            @Valid @RequestBody QuantityRequest request) {
+
+        return ResponseEntity.ok(itemService.addStock(id, request));
     }
 
     @PutMapping("/{id}")

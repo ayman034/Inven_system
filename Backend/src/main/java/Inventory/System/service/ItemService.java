@@ -2,6 +2,7 @@ package Inventory.System.service;
 
 import Inventory.System.dto.ItemRequest;
 import Inventory.System.dto.ItemResponse;
+import Inventory.System.dto.QuantityRequest;
 import Inventory.System.exception.BadRequestException;
 import Inventory.System.exception.ResourceNotFoundException;
 import Inventory.System.model.Inventory;
@@ -10,23 +11,34 @@ import Inventory.System.repository.InventoryRepository;
 import Inventory.System.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ItemService {
     private final ItemRepository itemRepository;
     private final InventoryRepository inventoryRepository;
 
+    @Transactional(readOnly = true)
     public List<ItemResponse> getAllItems() {
         return itemRepository.findAll().stream().map(this::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public ItemResponse getItemById(Long id) { return toResponse(findItem(id)); }
 
     public ItemResponse createItem(ItemRequest request) {
         Item item = Item.builder().name(request.getName().trim()).category(request.getCategory().trim()).quantity(request.getQuantity()).build();
+        return toResponse(itemRepository.save(item));
+    }
+
+    public ItemResponse addStock(Long id, QuantityRequest request) {
+        validatePositiveWholeNumber(request.getQuantity());
+        Item item = findItemForUpdate(id);
+        item.setQuantity(item.getQuantity() + request.getQuantity());
         return toResponse(itemRepository.save(item));
     }
 
@@ -52,6 +64,16 @@ public class ItemService {
 
     private Item findItem(Long id) {
         return itemRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Item haijapatikana yenye id: " + id));
+    }
+
+    private Item findItemForUpdate(Long id) {
+        return itemRepository.findByIdForUpdate(id).orElseThrow(() -> new ResourceNotFoundException("Item haijapatikana yenye id: " + id));
+    }
+
+    private void validatePositiveWholeNumber(Integer quantity) {
+        if (quantity == null || quantity <= 0) {
+            throw new BadRequestException("Quantity to add must be a whole number greater than 0");
+        }
     }
 
     private int allocatedFor(Long itemId) {
