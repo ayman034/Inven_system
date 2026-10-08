@@ -38,6 +38,9 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) {
         ensureItemTableColumns();
         removeUniqueItemNameIndex();
+        ensureRoomTableColumns();
+        removeUniqueRoomNameIndex();
+        ensureInventoryTableColumns();
 
         if (userRepository.count() == 0) {
             User admin = User.builder()
@@ -91,6 +94,42 @@ public class DataInitializer implements CommandLineRunner {
         for (String indexName : jdbcTemplate.queryForList(query, String.class)) {
             String escapedIndexName = indexName.replace("`", "``");
             jdbcTemplate.execute("ALTER TABLE items DROP INDEX `" + escapedIndexName + "`");
+        }
+    }
+
+    private void ensureRoomTableColumns() {
+        String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'rooms'";
+        Set<String> columns = Set.copyOf(jdbcTemplate.queryForList(query, String.class));
+
+        if (columns.contains("room_name") && columns.contains("name")) {
+            jdbcTemplate.execute("UPDATE rooms SET name = COALESCE(NULLIF(name, ''), room_name) WHERE room_name IS NOT NULL AND (name IS NULL OR name = '')");
+            jdbcTemplate.execute("ALTER TABLE rooms DROP COLUMN room_name");
+        } else if (columns.contains("room_name") && !columns.contains("name")) {
+            jdbcTemplate.execute("ALTER TABLE rooms CHANGE room_name name VARCHAR(255) NOT NULL");
+        }
+    }
+
+    private void removeUniqueRoomNameIndex() {
+        String query = "SELECT INDEX_NAME FROM INFORMATION_SCHEMA.STATISTICS "
+                + "WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'rooms' AND NON_UNIQUE = 0 "
+                + "GROUP BY INDEX_NAME HAVING COUNT(*) = 1 AND MAX(COLUMN_NAME) = 'name' "
+                + "AND INDEX_NAME <> 'PRIMARY'";
+
+        for (String indexName : jdbcTemplate.queryForList(query, String.class)) {
+            String escapedIndexName = indexName.replace("`", "``");
+            jdbcTemplate.execute("ALTER TABLE rooms DROP INDEX `" + escapedIndexName + "`");
+        }
+    }
+
+    private void ensureInventoryTableColumns() {
+        String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'inventory'";
+        Set<String> columns = Set.copyOf(jdbcTemplate.queryForList(query, String.class));
+
+        if (columns.contains("allocated_quantity") && columns.contains("quantity")) {
+            jdbcTemplate.execute("UPDATE inventory SET quantity = COALESCE(quantity, allocated_quantity) WHERE allocated_quantity IS NOT NULL AND (quantity IS NULL OR quantity = 0)");
+            jdbcTemplate.execute("ALTER TABLE inventory DROP COLUMN allocated_quantity");
+        } else if (columns.contains("allocated_quantity") && !columns.contains("quantity")) {
+            jdbcTemplate.execute("ALTER TABLE inventory CHANGE allocated_quantity quantity INT NOT NULL");
         }
     }
 }
