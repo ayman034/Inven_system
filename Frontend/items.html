@@ -251,6 +251,47 @@
 
 </div>
 
+<div id="stockModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="stockModalTitle">
+        <div class="modal-header">
+            <h3 id="stockModalTitle">Add Stock</h3>
+            <button type="button" class="modal-close" id="closeStockModalBtn" aria-label="Close">×</button>
+        </div>
+
+        <form id="stockForm">
+            <input type="hidden" id="stockItemId">
+
+            <div class="form-group">
+                <label>Item Name</label>
+                <input type="text" id="stockItemName" disabled>
+            </div>
+
+            <div class="form-group">
+                <label>Current Quantity</label>
+                <input type="text" id="stockCurrentQuantity" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="stockQuantityToAdd">Quantity to Add</label>
+                <input
+                    type="number"
+                    id="stockQuantityToAdd"
+                    min="1"
+                    step="1"
+                    placeholder="Enter quantity"
+                    required
+                >
+                <small id="stockError" class="field-error"></small>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="cancelAddStockBtn">Cancel</button>
+                <button type="submit" class="btn btn-primary">Add Stock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <script src="JS/api.js"></script>
 <script src="JS/auth.js"></script>

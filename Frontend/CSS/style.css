@@ -704,6 +704,79 @@ textarea {
     font-size: 12px;
 }
 
+.table-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.52);
+    z-index: 2000;
+}
+
+.modal-backdrop.open {
+    display: flex;
+}
+
+.modal-card {
+    width: min(100%, 460px);
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.20);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 22px;
+    color: #111827;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    color: #475569;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+#stockForm {
+    padding: 22px 20px 18px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.field-error {
+    display: block;
+    min-height: 18px;
+    margin-top: 8px;
+    color: #dc2626;
+    font-size: 12px;
+}
+
 /* =========================================================
    SEARCH
    ========================================================= */

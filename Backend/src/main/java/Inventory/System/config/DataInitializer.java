@@ -10,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 /**
  * Creates the first ADMIN account when the system starts for the first time
  * (when the database contains no users).
@@ -34,6 +36,7 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        ensureItemTableColumns();
         removeUniqueItemNameIndex();
 
         if (userRepository.count() == 0) {
@@ -53,6 +56,29 @@ public class DataInitializer implements CommandLineRunner {
             System.out.println("Password haijaonyeshwa kwa usalama.");
             System.out.println("Please change the admin password immediately!");
             System.out.println("============================================");
+        }
+    }
+
+    private void ensureItemTableColumns() {
+        String query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'items'";
+        Set<String> columns = Set.copyOf(jdbcTemplate.queryForList(query, String.class));
+
+        if (columns.contains("item_name") && columns.contains("name")) {
+            jdbcTemplate.execute("UPDATE items SET name = COALESCE(NULLIF(name, ''), item_name) WHERE item_name IS NOT NULL AND (name IS NULL OR name = '')");
+            jdbcTemplate.execute("ALTER TABLE items DROP COLUMN item_name");
+        } else if (columns.contains("item_name") && !columns.contains("name")) {
+            jdbcTemplate.execute("ALTER TABLE items CHANGE item_name name VARCHAR(255) NOT NULL");
+        }
+
+        if (columns.contains("item_category") && !columns.contains("category")) {
+            jdbcTemplate.execute("ALTER TABLE items CHANGE item_category category VARCHAR(255) NOT NULL");
+        }
+
+        if (columns.contains("total_quantity") && columns.contains("quantity")) {
+            jdbcTemplate.execute("UPDATE items SET quantity = COALESCE(quantity, total_quantity) WHERE total_quantity IS NOT NULL AND (quantity IS NULL OR quantity = 0)");
+            jdbcTemplate.execute("ALTER TABLE items DROP COLUMN total_quantity");
+        } else if (columns.contains("total_quantity") && !columns.contains("quantity")) {
+            jdbcTemplate.execute("ALTER TABLE items CHANGE total_quantity quantity INT NOT NULL");
         }
     }
 
